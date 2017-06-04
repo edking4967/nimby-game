@@ -1,0 +1,167 @@
+.sprite {
+    background-image: url(spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-github {
+    width: 30px;
+    height: 30px;
+    background-position: -5px -5px;
+}
+
+.sprite-gmail {
+    width: 30px;
+    height: 30px;
+    background-position: -45px -5px;
+}
+
+.sprite-linkedin {
+    width: 30px;
+    height: 30px;
+    background-position: -85px -5px;
+}
+
+.sprite-monk01 {
+    width: 207px;
+    height: 379px;
+    background-position: -125px -5px;
+}
+
+.sprite-monk02 {
+    width: 236px;
+    height: 374px;
+    background-position: -342px -5px;
+}
+
+.sprite-monk03 {
+    width: 267px;
+    height: 361px;
+    background-position: -588px -5px;
+}
+
+.sprite-monk04 {
+    width: 273px;
+    height: 342px;
+    background-position: -865px -5px;
+}
+
+.sprite-monk05 {
+    width: 274px;
+    height: 340px;
+    background-position: -1148px -5px;
+}
+
+.sprite-monk06 {
+    width: 274px;
+    height: 340px;
+    background-position: -1432px -5px;
+}
+
+.sprite-monk07 {
+    width: 273px;
+    height: 342px;
+    background-position: -1716px -5px;
+}
+
+.sprite-monk08 {
+    width: 267px;
+    height: 361px;
+    background-position: -1999px -5px;
+}
+
+.sprite-monk09 {
+    width: 237px;
+    height: 374px;
+    background-position: -2276px -5px;
+}
+
+.sprite-monk10 {
+    width: 207px;
+    height: 379px;
+    background-position: -2523px -5px;
+}
+
+.sprite-monk11 {
+    width: 179px;
+    height: 384px;
+    background-position: -2740px -5px;
+}
+
+.sprite-monk12 {
+    width: 163px;
+    height: 382px;
+    background-position: -2929px -5px;
+}
+
+.sprite-monk13 {
+    width: 163px;
+    height: 372px;
+    background-position: -3102px -5px;
+}
+
+.sprite-monk14 {
+    width: 174px;
+    height: 366px;
+    background-position: -3275px -5px;
+}
+
+.sprite-monk15 {
+    width: 185px;
+    height: 348px;
+    background-position: -3459px -5px;
+}
+
+.sprite-monk16 {
+    width: 188px;
+    height: 332px;
+    background-position: -3654px -5px;
+}
+
+.sprite-monk17 {
+    width: 188px;
+    height: 332px;
+    background-position: -3852px -5px;
+}
+
+.sprite-monk18 {
+    width: 174px;
+    height: 366px;
+    background-position: -4050px -5px;
+}
+
+.sprite-monk19 {
+    width: 163px;
+    height: 372px;
+    background-position: -4234px -5px;
+}
+
+.sprite-monk20 {
+    width: 163px;
+    height: 382px;
+    background-position: -4407px -5px;
+}
+
+.sprite-monk21 {
+    width: 179px;
+    height: 384px;
+    background-position: -4580px -5px;
+}
+
+.sprite-stackoverflow {
+    width: 30px;
+    height: 30px;
+    background-position: -4769px -5px;
+}
+
+.sprite-tumblr {
+    width: 30px;
+    height: 30px;
+    background-position: -4809px -5px;
+}
+
+.sprite-twitter {
+    width: 30px;
+    height: 30px;
+    background-position: -4849px -5px;
+}

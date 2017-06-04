@@ -1,0 +1,56 @@
+/*
+
+        Creating a sprite from following images:
+        
+        monk/monk01.png (207x379)
+        monk/monk02.png (236x374)
+        monk/monk03.png (267x361)
+        monk/monk04.png (273x342)
+        monk/monk05.png (274x340)
+        monk/monk06.png (274x340)
+        monk/monk07.png (273x342)
+        monk/monk08.png (267x361)
+        monk/monk09.png (237x374)
+        monk/monk10.png (207x379)
+        monk/monk11.png (179x384)
+        monk/monk12.png (163x382)
+        monk/monk13.png (163x372)
+        monk/monk14.png (174x366)
+        monk/monk15.png (185x348)
+        monk/monk16.png (188x332)
+        monk/monk17.png (188x332)
+        monk/monk18.png (174x366)
+        monk/monk19.png (163x372)
+        monk/monk20.png (163x382)
+        monk/monk21.png (179x384)
+
+        Output files:
+          monk.png
+          monk.css
+
+        Output size:
+          6300x384
+
+
+*/
+img.monk01 { width: 300px; height: 379px; background: url(monk.png) 0px -2px no-repeat; }
+img.monk02 { width: 300px; height: 374px; background: url(monk.png) -300px -5px no-repeat; }
+img.monk03 { width: 300px; height: 361px; background: url(monk.png) -600px -11px no-repeat; }
+img.monk04 { width: 300px; height: 342px; background: url(monk.png) -900px -21px no-repeat; }
+img.monk05 { width: 300px; height: 340px; background: url(monk.png) -1200px -22px no-repeat; }
+img.monk06 { width: 300px; height: 340px; background: url(monk.png) -1500px -22px no-repeat; }
+img.monk07 { width: 300px; height: 342px; background: url(monk.png) -1800px -21px no-repeat; }
+img.monk08 { width: 300px; height: 361px; background: url(monk.png) -2100px -11px no-repeat; }
+img.monk09 { width: 300px; height: 374px; background: url(monk.png) -2400px -5px no-repeat; }
+img.monk10 { width: 300px; height: 379px; background: url(monk.png) -2700px -2px no-repeat; }
+img.monk11 { width: 300px; height: 384px; background: url(monk.png) -3000px 0px no-repeat; }
+img.monk12 { width: 300px; height: 382px; background: url(monk.png) -3300px -1px no-repeat; }
+img.monk13 { width: 300px; height: 372px; background: url(monk.png) -3600px -6px no-repeat; }
+img.monk14 { width: 300px; height: 366px; background: url(monk.png) -3900px -9px no-repeat; }
+img.monk15 { width: 300px; height: 348px; background: url(monk.png) -4200px -18px no-repeat; }
+img.monk16 { width: 300px; height: 332px; background: url(monk.png) -4500px -26px no-repeat; }
+img.monk17 { width: 300px; height: 332px; background: url(monk.png) -4800px -26px no-repeat; }
+img.monk18 { width: 300px; height: 366px; background: url(monk.png) -5100px -9px no-repeat; }
+img.monk19 { width: 300px; height: 372px; background: url(monk.png) -5400px -6px no-repeat; }
+img.monk20 { width: 300px; height: 382px; background: url(monk.png) -5700px -1px no-repeat; }
+img.monk21 { width: 300px; height: 384px; background: url(monk.png) -6000px 0px no-repeat; }

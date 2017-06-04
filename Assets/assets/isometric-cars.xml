@@ -1,0 +1,8 @@
+<TextureAtlas imagePath="isometric-cars.png">
+	<SubTexture name="orangeCar.png" x="0" y="0" width="180" height="126"/>
+	<SubTexture name="greenCar.png" x="180" y="0" width="180" height="126"/>
+	<SubTexture name="blackCar.png" x="360" y="0" width="180" height="126"/>
+	<SubTexture name="greyCar.png" x="74" y="126" width="180" height="126"/>
+	<SubTexture name="blueCar.png" x="254" y="126" width="180" height="126"/>
+	<SubTexture name="redCar.png" x="334" y="126" width="180" height="126"/>
+</TextureAtlas>
