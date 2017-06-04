@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class AssemblyLine: MonoBehaviour {
 
@@ -55,6 +56,7 @@ public class AssemblyLine: MonoBehaviour {
         GameObject g = pool[randomNum];
         pool.RemoveAt(randomNum);
         g.GetComponent<SpriteRenderer>().enabled = true;
+        g.GetComponent<BoxCollider2D>().enabled = true;
         g.GetComponent<SpriteRenderer>().color = Color.white;
         return g;
     }
@@ -72,6 +74,7 @@ public class AssemblyLine: MonoBehaviour {
     void moveToPool(GameObject g) {
         pool.Add(g);
         g.GetComponent<SpriteRenderer>().enabled = false;
+        g.GetComponent<BoxCollider2D>().enabled = false;
     }
 
     void updateProfit() {
@@ -82,7 +85,11 @@ public class AssemblyLine: MonoBehaviour {
 
     public void getRidOf(GameObject g) {
         g.GetComponent<SpriteRenderer>().color = Color.red;
-        //objectsToClear.Add(g, Time.time); 
+        try {
+            objectsToClear.Add(g, Time.time); 
+        }
+        catch (ArgumentException e) {
+        }
     }
 
     public float interval = 1f; // seconds between changing positions
@@ -96,8 +103,8 @@ public class AssemblyLine: MonoBehaviour {
             updateProfit();
             timeSave = Time.time;
         }
-        /*
         GameObject rem = null;
+        Debug.Log(objectsToClear.Count);
         foreach (DictionaryEntry pair in objectsToClear) {
             if (Time.time - (float) pair.Value >= clearInterval) {
                 rem = (GameObject) pair.Key;
@@ -105,10 +112,10 @@ public class AssemblyLine: MonoBehaviour {
             }
         }
         if (rem != null) {
+            Debug.Log("remove");
             moveToPool(rem);
             objectsToClear.Remove(rem);
         }
-        */
 	}
 
 }
