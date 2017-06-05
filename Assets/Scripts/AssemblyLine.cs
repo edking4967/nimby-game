@@ -10,6 +10,7 @@ public class AssemblyLine: MonoBehaviour {
     public GameObject marker2;	
     public GameObject marker3;	
     public GameObject marker4;	
+    public Houses houses;	
     Hashtable objectsToClear;
 
     float timeSave;
@@ -20,6 +21,7 @@ public class AssemblyLine: MonoBehaviour {
     public void Start() {
 
         objectsToClear = new Hashtable();
+        houses = GameObject.Find("houses").GetComponent<Houses>();
         pool = new List<GameObject>();
 
         moveToPool(GameObject.Find("man1"));
@@ -80,6 +82,9 @@ public class AssemblyLine: MonoBehaviour {
     void updateProfit() {
         if (positions[positions.Length - 1].name.Contains("man")) {
             profit++;
+            if (profit % 3 == 2) {
+                houses.buildHouse();
+            }
         }
     }
 
@@ -104,7 +109,6 @@ public class AssemblyLine: MonoBehaviour {
             timeSave = Time.time;
         }
         GameObject rem = null;
-        Debug.Log(objectsToClear.Count);
         foreach (DictionaryEntry pair in objectsToClear) {
             if (Time.time - (float) pair.Value >= clearInterval) {
                 rem = (GameObject) pair.Key;
@@ -112,7 +116,6 @@ public class AssemblyLine: MonoBehaviour {
             }
         }
         if (rem != null) {
-            Debug.Log("remove");
             moveToPool(rem);
             objectsToClear.Remove(rem);
         }

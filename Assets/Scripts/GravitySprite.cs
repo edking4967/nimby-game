@@ -59,7 +59,6 @@ public class GravitySprite : MonoBehaviour
             return;
         }
 
-        Debug.Log ("jumping!");
         rb.AddForce(new Vector2(0,200));
         isJumping = true;
         anim.SetTrigger("Jump");
