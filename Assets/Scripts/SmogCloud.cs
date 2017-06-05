@@ -6,48 +6,47 @@ using System;
 public class SmogCloud: MonoBehaviour {
 
     GameObject[] smogs;
-    int smogNum = 0;
-    Hashtable ht;
+    Hashtable houseTable;
+    float maxSize = 3f;
 
     public void Start() {
-        ht = new Hashtable();
+        houseTable = new Hashtable();
+        houseTable.Add("house1-1", 0);
+        houseTable.Add("house1-2", 1);
+        houseTable.Add("house1-3", 2);
+        houseTable.Add("house1-4", 3);
+        houseTable.Add("house1-5", 4);
         smogs = new GameObject[] {
             transform.Find("smog0").gameObject,
             transform.Find("smog1").gameObject,
             transform.Find("smog2").gameObject,
             transform.Find("smog3").gameObject,
             transform.Find("smog4").gameObject,
-            transform.Find("smog5").gameObject,
-            transform.Find("smog6").gameObject,
-            transform.Find("smog7").gameObject,
-            transform.Find("smog8").gameObject,
-            transform.Find("smog9").gameObject,
-            transform.Find("smog10").gameObject,
-            transform.Find("smog11").gameObject,
-            transform.Find("smog12").gameObject,
+            transform.Find("smog5").gameObject
         };
+    }
+    public void Update() {
+        for (int i=0; i<smogs.Length; i++) {
+            smogs[i].transform.Rotate(Vector3.right * Time.deltaTime * 5);
+        }
     }
     public void OnTriggerEnter2D(Collider2D hit) {
 
         if (hit.gameObject.tag == "smog") {
-            incrementTable(hit.transform.parent.name);
+            // Move smog back down to chimney:
             hit.transform.position = hit.transform.parent.gameObject.GetComponent<House>().smogStartPos; 
+            // Update scale, position, and visibility of floating smog:
+            int smogNum = (int) houseTable[hit.transform.parent.gameObject.name];
             Vector2 vec = smogs[smogNum].transform.position;
             vec.x = hit.transform.position.x;
             smogs[smogNum].transform.position = vec;
             smogs[smogNum].GetComponent<SpriteRenderer>().enabled = true;
+            //if (smogs[smogNum].transform.localScale.magnitude < maxSize) {
+                //Debug.Log(smogs[smogNum].transform.localScale.magnitude);
+                smogs[smogNum].transform.localScale += new Vector3(1,1);//smogs[smogNum].transform.localScale * 1f;
+            //} 
 
-            if (smogNum < smogs.Length - 1) {
-                smogs[smogNum].transform.localScale += smogs[smogNum].transform.localScale * .2f * (int) ht[hit.transform.parent.name]; 
-                smogNum++;
-            } 
         }
     }
 
-    public void incrementTable(string name) {
-        if (!ht.ContainsKey(name))
-            ht.Add(name, 0);
-        else
-            ht[name] = (int) ht[name] + 1;
-    }
 }

@@ -15,6 +15,7 @@ public class Barrel: MonoBehaviour {
     }
 
 	public void OnTriggerEnter2D(Collider2D hit) {
+        Debug.Log(hit.gameObject.name);
         if (hit.gameObject.tag == "actor") {
             if (!onPlatform) {
                 line.getRidOf(hit.gameObject);
