@@ -13,6 +13,7 @@ public class AssemblyLine: MonoBehaviour {
     public Houses houses;	
     Hashtable objectsToClear;
     public GameObject[] men;
+    WoodPile woodPile;
 
     float timeSave;
 
@@ -32,9 +33,9 @@ public class AssemblyLine: MonoBehaviour {
         moveToPool(GameObject.Find("man5"));
         moveToPool(GameObject.Find("man6"));
         moveToPool(GameObject.Find("man7"));
-        moveToPool(GameObject.Find("1-3"));
-        moveToPool(GameObject.Find("2-3"));
-        moveToPool(GameObject.Find("3-1"));
+        moveToPool(GameObject.Find("slimy"));
+        moveToPool(GameObject.Find("jumpy"));
+        moveToPool(GameObject.Find("batty"));
 
         positions = new GameObject[4]; // fixed positions in assembly line
 
@@ -47,6 +48,7 @@ public class AssemblyLine: MonoBehaviour {
             GameObject.Find("man6"),
             GameObject.Find("man7")
         };
+        woodPile = GameObject.Find("woodPile").GetComponent<WoodPile>();
 
         timeSave = Time.time;
 
@@ -74,6 +76,9 @@ public class AssemblyLine: MonoBehaviour {
         if (g.name.Contains("man")) {
             g.GetComponent<Man>().wood.GetComponent<SpriteRenderer>().enabled = true;
         }
+        else {
+            g.GetComponent<Man>().wood.GetComponent<SpriteRenderer>().enabled = false;
+        }
         pool.RemoveAt(randomNum);
         g.GetComponent<SpriteRenderer>().enabled = true;
         g.GetComponent<BoxCollider2D>().enabled = true;
@@ -88,14 +93,13 @@ public class AssemblyLine: MonoBehaviour {
             positions[i] = positions[i-1];
         }
         positions[0] = getRandomActorFromPool();
+        positions[0].GetComponent<Squashable>().isSquashed = false;
         snapToPositions();
     }
 
     void moveToPool(GameObject g) {
         pool.Add(g);
-        if (g.name.Contains("man")) {
-            g.GetComponent<Man>().wood.GetComponent<SpriteRenderer>().enabled = false;
-        }
+        g.GetComponent<Man>().wood.GetComponent<SpriteRenderer>().enabled = false;
         g.GetComponent<SpriteRenderer>().enabled = false;
         g.GetComponent<BoxCollider2D>().enabled = false;
         g.GetComponent<Squashable>().unsquash();
@@ -103,15 +107,15 @@ public class AssemblyLine: MonoBehaviour {
 
     void updateWood() {
         GameObject actor = positions[positions.Length - 1]; // last in assembly line
-        if (actor.name.Contains("man")) {
-            actor.GetComponent<Man>().dropWood();
-            wood++;
-            if (wood % 3 == 0 && wood != 0) {
-                houses.buildHouse();
-                wood = 0;
-                for (int i=0; i<men.Length; i++) {
-                    men[i].GetComponent<Man>().restoreWood();
-                }
+        if (!actor.GetComponent<Squashable>().isSquashed) {
+        
+            if (actor.name.Contains("man")) {
+                actor.GetComponent<Man>().dropWood();
+                woodPile.addWood();
+            }
+            else {
+                actor.GetComponent<Man>().grabWood();
+                woodPile.removeWood();
             }
         }
     }
