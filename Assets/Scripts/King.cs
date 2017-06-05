@@ -14,7 +14,6 @@ public class King: MonoBehaviour {
 
 	void FixedUpdate () {
 
-
         if(Input.GetKey(KeyCode.LeftArrow))
             move(Vector2.left, Time.deltaTime);
         if(Input.GetKey(KeyCode.RightArrow))
