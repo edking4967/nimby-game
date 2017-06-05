@@ -40,17 +40,18 @@ public class Barrel: MonoBehaviour {
             onPlatform = false;
             GetComponent<BoxCollider2D>().enabled = true;
             transform.parent = kingObj.transform;
+            GetComponent<Animator>().Play("barrel-still");
         }
     }
 
     void fall() {
-        GetComponent<Animator>().enabled = false;
+        GetComponent<Animator>().Play("barrel-fall");
         GetComponent<BoxCollider2D>().enabled =false;
     }
 
     public void OnCollisionEnter2D(Collision2D hit) {
         timeSave = Time.time;
         onPlatform = true;
-        GetComponent<Animator>().enabled = true;
+        GetComponent<Animator>().Play("barrel-still");
     }
 }

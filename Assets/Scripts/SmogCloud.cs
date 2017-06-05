@@ -25,11 +25,13 @@ public class SmogCloud: MonoBehaviour {
             transform.Find("smog5").gameObject
         };
     }
+    /*
     public void Update() {
         for (int i=0; i<smogs.Length; i++) {
             smogs[i].transform.Rotate(Vector3.right * Time.deltaTime * 5);
         }
     }
+    */
     public void OnTriggerEnter2D(Collider2D hit) {
 
         if (hit.gameObject.tag == "smog") {

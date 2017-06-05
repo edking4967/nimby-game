@@ -19,7 +19,6 @@ public class AssemblyLine: MonoBehaviour {
     public int profit = 0;
 
     public void Start() {
-
         objectsToClear = new Hashtable();
         houses = GameObject.Find("houses").GetComponent<Houses>();
         pool = new List<GameObject>();
@@ -76,12 +75,15 @@ public class AssemblyLine: MonoBehaviour {
     void moveToPool(GameObject g) {
         pool.Add(g);
         g.GetComponent<SpriteRenderer>().enabled = false;
+
         g.GetComponent<BoxCollider2D>().enabled = false;
         g.GetComponent<Squashable>().unsquash();
     }
 
     void updateProfit() {
-        if (positions[positions.Length - 1].name.Contains("man")) {
+        GameObject actor = positions[positions.Length - 1];
+        if (actor.name.Contains("man")) {
+            actor.GetComponent<Man>().dropWood();
             profit++;
             if (profit % 3 == 2) {
                 houses.buildHouse();

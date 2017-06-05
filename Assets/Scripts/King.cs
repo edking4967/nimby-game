@@ -9,7 +9,7 @@ public class King: MonoBehaviour {
 
     public void Start() {
         barrel = GameObject.Find("barrel");
-        barrel.GetComponent<Animator>().StartPlayback();
+        barrel.GetComponent<Animator>().Play("barrel-still");
     }
 
 	void FixedUpdate () {
@@ -20,7 +20,7 @@ public class King: MonoBehaviour {
         if(Input.GetKey(KeyCode.RightArrow))
             move(Vector2.right, Time.deltaTime);
         if(Input.GetKeyDown(KeyCode.Space)) {
-            barrel.GetComponent<Animator>().StopPlayback();
+            barrel.GetComponent<Animator>().Play("barrel-fall");
             barrel.GetComponent<Rigidbody2D>().isKinematic = false;
             transform.DetachChildren();
         }
