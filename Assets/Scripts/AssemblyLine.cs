@@ -77,6 +77,7 @@ public class AssemblyLine: MonoBehaviour {
         pool.Add(g);
         g.GetComponent<SpriteRenderer>().enabled = false;
         g.GetComponent<BoxCollider2D>().enabled = false;
+        g.GetComponent<Squashable>().unsquash();
     }
 
     void updateProfit() {

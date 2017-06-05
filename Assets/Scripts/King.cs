@@ -22,6 +22,7 @@ public class King: MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.Space)) {
             barrel.GetComponent<Animator>().StopPlayback();
             barrel.GetComponent<Rigidbody2D>().isKinematic = false;
+            transform.DetachChildren();
         }
 	}
 
