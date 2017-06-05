@@ -84,7 +84,7 @@ public class AssemblyLine: MonoBehaviour {
     }
 
     public void getRidOf(GameObject g) {
-        g.GetComponent<SpriteRenderer>().color = Color.red;
+        //g.GetComponent<SpriteRenderer>().color = Color.red;
         try {
             objectsToClear.Add(g, Time.time); 
         }
