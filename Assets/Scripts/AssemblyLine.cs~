@@ -74,14 +74,7 @@ public class AssemblyLine: MonoBehaviour {
         GameObject g = pool[randomNum];
 
         if (g.name.Contains("man")) {
-            try {
-                g.GetComponent<Man>().wood.GetComponent<SpriteRenderer>().enabled = true;
-            }
-            catch(UnassignedReferenceException e) {
-                Debug.Log("UnassignedReferenceException on gameObject:");
-                Debug.Log(g.name);
-                Debug.Log(e);
-            }
+            g.GetComponent<Man>().wood.GetComponent<SpriteRenderer>().enabled = true;
         }
         else {
             g.GetComponent<Man>().wood.GetComponent<SpriteRenderer>().enabled = false;
@@ -106,15 +99,8 @@ public class AssemblyLine: MonoBehaviour {
 
     void moveToPool(GameObject g) {
         pool.Add(g);
-
-        try {
-            g.GetComponent<Man>().wood.GetComponent<SpriteRenderer>().enabled = false;
-        }
-        catch(UnassignedReferenceException e) {
-            Debug.Log("UnassignedReferenceException on gameObject:");
-            Debug.Log(g.name);
-            Debug.Log(e);
-        }
+        Debug.Log(g.name);
+        g.GetComponent<Man>().wood.GetComponent<SpriteRenderer>().enabled = false;
         g.GetComponent<SpriteRenderer>().enabled = false;
         g.GetComponent<BoxCollider2D>().enabled = false;
         g.GetComponent<Squashable>().unsquash();
@@ -141,7 +127,6 @@ public class AssemblyLine: MonoBehaviour {
             objectsToClear.Add(g, Time.time); 
         }
         catch (ArgumentException e) {
-            Debug.Log("Uncaught ArgumentException with objectsToClear");
         }
     }
 
