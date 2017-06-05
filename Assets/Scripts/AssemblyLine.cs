@@ -12,11 +12,13 @@ public class AssemblyLine: MonoBehaviour {
     public GameObject marker4;	
     public Houses houses;	
     Hashtable objectsToClear;
+    public GameObject[] men;
 
     float timeSave;
 
     public GameObject[] positions;
-    public int profit = 0;
+
+    public int wood = 0;
 
     public void Start() {
         objectsToClear = new Hashtable();
@@ -34,9 +36,20 @@ public class AssemblyLine: MonoBehaviour {
         moveToPool(GameObject.Find("2-3"));
         moveToPool(GameObject.Find("3-1"));
 
+        positions = new GameObject[4]; // fixed positions in assembly line
+
+        men = new GameObject[] {
+            GameObject.Find("man1"),
+            GameObject.Find("man2"),
+            GameObject.Find("man3"),
+            GameObject.Find("man4"),
+            GameObject.Find("man5"),
+            GameObject.Find("man6"),
+            GameObject.Find("man7")
+        };
+
         timeSave = Time.time;
 
-        positions = new GameObject[4];
 
         for (int i=0; i < positions.Length; i++) {
             positions[i] = getRandomActorFromPool();            
@@ -54,7 +67,13 @@ public class AssemblyLine: MonoBehaviour {
 
     GameObject getRandomActorFromPool() {
         int randomNum = UnityEngine.Random.Range(0, pool.Count);
+
+
         GameObject g = pool[randomNum];
+
+        if (g.name.Contains("man")) {
+            g.GetComponent<Man>().wood.GetComponent<SpriteRenderer>().enabled = true;
+        }
         pool.RemoveAt(randomNum);
         g.GetComponent<SpriteRenderer>().enabled = true;
         g.GetComponent<BoxCollider2D>().enabled = true;
@@ -74,19 +93,25 @@ public class AssemblyLine: MonoBehaviour {
 
     void moveToPool(GameObject g) {
         pool.Add(g);
+        if (g.name.Contains("man")) {
+            g.GetComponent<Man>().wood.GetComponent<SpriteRenderer>().enabled = false;
+        }
         g.GetComponent<SpriteRenderer>().enabled = false;
-
         g.GetComponent<BoxCollider2D>().enabled = false;
         g.GetComponent<Squashable>().unsquash();
     }
 
-    void updateProfit() {
-        GameObject actor = positions[positions.Length - 1];
+    void updateWood() {
+        GameObject actor = positions[positions.Length - 1]; // last in assembly line
         if (actor.name.Contains("man")) {
             actor.GetComponent<Man>().dropWood();
-            profit++;
-            if (profit % 3 == 2) {
+            wood++;
+            if (wood % 3 == 0 && wood != 0) {
                 houses.buildHouse();
+                wood = 0;
+                for (int i=0; i<men.Length; i++) {
+                    men[i].GetComponent<Man>().restoreWood();
+                }
             }
         }
     }
@@ -108,7 +133,7 @@ public class AssemblyLine: MonoBehaviour {
         float t = Time.time;
         if (t - timeSave >= interval) {
             rotatePositions();
-            updateProfit();
+            updateWood();
             timeSave = Time.time;
         }
         GameObject rem = null;
