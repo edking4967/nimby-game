@@ -19,9 +19,12 @@ public class King: MonoBehaviour {
         if(Input.GetKey(KeyCode.RightArrow))
             move(Vector2.right, Time.deltaTime);
         if(Input.GetKeyDown(KeyCode.Space)) {
-            barrel.GetComponent<Animator>().Play("barrel-fall");
-            barrel.GetComponent<Rigidbody2D>().isKinematic = false;
-            transform.DetachChildren();
+            if (transform.Find("barrel")) { 
+                // drop barrel
+                barrel.GetComponent<Barrel>().drop();
+                // detach barrel from king
+                transform.DetachChildren();
+            }
         }
 	}
 

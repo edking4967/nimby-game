@@ -10,14 +10,20 @@ public class Barrel: MonoBehaviour {
     float interval = .8f;
     bool onPlatform = false;
     Vector2 initialPos;
-    AudioSource soundEffect;
+    AudioSource barrelSmashSound;
+    AudioSource fallSound;
 
     public void Start() {
         line = GameObject.Find("assemblyLine").GetComponent<AssemblyLine>();
         kingObj = GameObject.Find("king");
         king = GameObject.Find("king").GetComponent<King>();
         initialPos = transform.position;
-        soundEffect = GetComponent<AudioSource>();
+        AudioSource[] audios = GetComponents<AudioSource>();
+
+        barrelSmashSound = audios[0];
+        fallSound = audios[1];
+        barrelSmashSound.Stop();
+        fallSound.Stop();
     }
 
 	public void OnTriggerEnter2D(Collider2D hit) {
@@ -25,8 +31,15 @@ public class Barrel: MonoBehaviour {
             if (!onPlatform) {
                 line.getRidOf(hit.gameObject);
                 hit.gameObject.GetComponent<Squashable>().squash();
+
+                barrelSmashSound.Play();
             } 
         }
+    }
+    public void drop() {
+        GetComponent<Animator>().Play("barrel-fall");
+        GetComponent<Rigidbody2D>().isKinematic = false;
+        fallSound.Play();
     }
 
     public void Update(){
@@ -50,8 +63,7 @@ public class Barrel: MonoBehaviour {
         Debug.Log("fallOffPlatform");
         GetComponent<Animator>().Play("barrel-fall");
         GetComponent<BoxCollider2D>().enabled =false;
-        soundEffect.mute = false;
-        soundEffect.Play();
+
     }
 
     public void OnCollisionEnter2D(Collision2D hit) {
